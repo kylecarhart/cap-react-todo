@@ -5,6 +5,7 @@ import { Todo as TTodo } from "../../types";
 import XIcon from "../Icons/XIcon";
 import styles from "./Todo.module.css";
 import CogIcon from "../Icons/CogIcon";
+import DragIcon from "../Icons/DragIcon";
 
 type Props = {
   todo?: TTodo;
@@ -26,7 +27,7 @@ export default function Todo({
   const isInputTodo = !todo;
 
   function handleOnKeyDown(e: KeyboardEvent<HTMLInputElement>) {
-    if (!isInputTodo) {
+    if (!isInputTodo || !text) {
       return;
     }
 
@@ -66,6 +67,9 @@ export default function Todo({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
+      <span className={styles.dragIcon}>
+        <DragIcon />
+      </span>
       <input
         disabled={isInputTodo}
         type="checkbox"
@@ -82,10 +86,14 @@ export default function Todo({
         onChange={handleOnChange}
         value={todo ? todo.text : text}
       />
-      {!isInputTodo && isHovered && (
+      {!isInputTodo && (
         <>
-          <CogIcon className={styles.icon} />
-          <XIcon className={styles.icon} onClick={handleDeleteClick} />
+          <button className={styles.icon}>
+            <CogIcon />
+          </button>
+          <button className={styles.icon}>
+            <XIcon onClick={handleDeleteClick} />
+          </button>
         </>
       )}
     </div>

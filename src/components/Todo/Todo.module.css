@@ -6,10 +6,6 @@
   gap: 1rem;
 }
 
-.checkbox {
-  /* margin-right: 1rem; */
-}
-
 .input {
   border: none;
   width: 100%;
@@ -27,7 +23,16 @@
 }
 
 .icon {
+  background: none;
+  border: none;
+  padding: 0;
+  line-height: 0;
   cursor: pointer;
+}
+
+.dragIcon {
+  cursor: grab;
+  line-height: 0;
 }
 
 .isComplete {
