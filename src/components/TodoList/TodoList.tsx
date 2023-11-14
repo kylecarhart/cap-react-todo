@@ -1,5 +1,6 @@
 import { Todo as TTodo } from "../../types";
 import Todo from "../Todo/Todo";
+import TodoCreator from "../Todo/TodoCreator";
 import styles from "./TodoList.module.css";
 
 interface Props {
@@ -55,17 +56,11 @@ export default function TodoList({ searchText, todos, setTodos }: Props) {
 
   return (
     <div className={styles.container}>
-      <Todo
-        addTodo={addTodo}
-        updateTodo={updateTodo}
-        deleteTodo={deleteTodo}
-        toggleTodoComplete={toggleTodoComplete}
-      />
+      <TodoCreator addTodo={addTodo} />
       {incompleteTodos.map((todo) => (
         <Todo
           key={todo.id}
           todo={todo}
-          addTodo={addTodo}
           updateTodo={updateTodo}
           deleteTodo={deleteTodo}
           toggleTodoComplete={toggleTodoComplete}
@@ -76,7 +71,6 @@ export default function TodoList({ searchText, todos, setTodos }: Props) {
         <Todo
           key={todo.id}
           todo={todo}
-          addTodo={addTodo}
           updateTodo={updateTodo}
           deleteTodo={deleteTodo}
           toggleTodoComplete={toggleTodoComplete}

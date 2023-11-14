@@ -1,0 +1,44 @@
+.container {
+  background-color: white;
+  border: 1px solid #e7e7e7;
+  padding: 6px 8px;
+  border-radius: 4px;
+}
+
+.button {
+  width: 16px;
+  height: 16px;
+  margin: 0 4px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.default {
+  background-color: #eaeaea;
+  border: 1px solid #999999;
+  color: #333333;
+}
+
+.success {
+  background-color: #eaffcf;
+  border: 1px solid #a9e065;
+  color: #385b0d;
+}
+
+.warning {
+  background-color: #fffacb;
+  border: 1px solid #e2d55c;
+  color: #5b4e0d;
+}
+
+.danger {
+  background-color: #ffecec;
+  border: 1px solid #f7bdbd;
+  color: #5b0d0d;
+}
+
+.info {
+  background-color: #d9e8ff;
+  border: 1px solid #84aff3;
+  color: #183666;
+}
