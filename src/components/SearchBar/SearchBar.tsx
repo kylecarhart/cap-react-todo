@@ -1,4 +1,5 @@
 import { Todo as TTodo } from "../../types";
+import BackIcon from "../Icons/BackIcon";
 import styles from "./SearchBar.module.css";
 
 interface Props {
@@ -16,6 +17,10 @@ export default function SearchBar({ searchText, setSearchText, todos }: Props) {
     }
   }, 0);
 
+  function handleBackClick() {
+    setSearchText("");
+  }
+
   return (
     <div className={styles.container}>
       <input
@@ -24,6 +29,11 @@ export default function SearchBar({ searchText, setSearchText, todos }: Props) {
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
       ></input>
+      {searchText && (
+        <button className={styles.backIcon} onClick={handleBackClick}>
+          <BackIcon />
+        </button>
+      )}
       {filteredNumber > 0 && (
         <span className={styles.filterText}>
           You are filtering out <strong>{filteredNumber} todos items.</strong>

@@ -5,7 +5,7 @@
 .searchBar {
   border: 1px solid #e7e7e7;
   border-radius: 4px;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 2.5rem 0.75rem 1.5rem;
   margin: 1.365rem 0;
   width: 100%;
 
@@ -20,4 +20,15 @@
   left: 24px;
   bottom: 5px;
   color: #5b0d0d;
+}
+
+.backIcon {
+  position: absolute;
+  background: none;
+  border: none;
+  right: 1rem;
+  top: 35px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 0;
 }
