@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { Todo as TTodo } from "../../types";
 import Todo from "../Todo/Todo";
 import styles from "./TodoList.module.css";
-import { Todo as TTodo } from "../../types";
 
-interface Props {}
+interface Props {
+  searchText: string;
+  todos: TTodo[];
+  setTodos: (todos: TTodo[]) => void;
+}
 
-export default function TodoList({}: Props) {
-  const [todos, setTodos] = useState<TTodo[]>([]);
-
-  const incompleteTodos = todos.filter((todo) => !todo.isComplete);
-  const completedTodos = todos.filter((todo) => todo.isComplete);
+export default function TodoList({ searchText, todos, setTodos }: Props) {
+  const filteredTodos = todos.filter((todo) =>
+    todo.text.toLowerCase().includes(searchText.toLowerCase())
+  );
+  const incompleteTodos = filteredTodos.filter((todo) => !todo.isComplete);
+  const completedTodos = filteredTodos.filter((todo) => todo.isComplete);
 
   function addTodo(todoToAdd: TTodo) {
     setTodos([todoToAdd, ...todos]);
