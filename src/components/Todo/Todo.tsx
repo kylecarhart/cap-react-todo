@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { ChangeEvent, KeyboardEvent, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Todo as TTodo } from "../../types";
 import XIcon from "../Icons/XIcon";
@@ -24,7 +24,16 @@ export default function Todo({
 }: Props) {
   const [text, setText] = useState(todo?.text || "");
   const [isHovered, setIsHovered] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const isInputTodo = !todo;
+
+  useEffect(() => {
+    console.log("focus", isInputTodo);
+    if (isInputTodo) {
+      inputRef.current?.focus();
+    }
+  }, [isInputTodo]);
 
   function handleOnKeyDown(e: KeyboardEvent<HTMLInputElement>) {
     if (!isInputTodo || !text) {
@@ -85,14 +94,15 @@ export default function Todo({
         onKeyDown={handleOnKeyDown}
         onChange={handleOnChange}
         value={todo ? todo.text : text}
+        ref={inputRef}
       />
       {!isInputTodo && (
         <>
           <button className={styles.icon}>
             <CogIcon />
           </button>
-          <button className={styles.icon}>
-            <XIcon onClick={handleDeleteClick} />
+          <button className={styles.icon} onClick={handleDeleteClick}>
+            <XIcon />
           </button>
         </>
       )}
