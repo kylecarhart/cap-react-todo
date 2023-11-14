@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./App.module.css";
 import Header from "./components/Header/Header";
 import SearchBar from "./components/SearchBar/SearchBar";
@@ -10,6 +10,18 @@ function App() {
   const [todos, setTodos] = useState<TTodo[]>([]);
   const [searchText, setSearchText] = useState("");
 
+  useEffect(() => {
+    const todosStorage = localStorage.getItem("todos");
+    if (todosStorage) {
+      setTodos(JSON.parse(todosStorage));
+    }
+  }, []);
+
+  function setAndSaveTodos(todos: TTodo[]) {
+    setTodos(todos);
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }
+
   return (
     <div>
       <Header />
@@ -20,7 +32,11 @@ function App() {
           setSearchText={setSearchText}
           todos={todos}
         />
-        <TodoList searchText={searchText} todos={todos} setTodos={setTodos} />
+        <TodoList
+          searchText={searchText}
+          todos={todos}
+          setTodos={setAndSaveTodos}
+        />
       </main>
     </div>
   );

@@ -29,7 +29,6 @@ export default function Todo({
   const isInputTodo = !todo;
 
   useEffect(() => {
-    console.log("focus", isInputTodo);
     if (isInputTodo) {
       inputRef.current?.focus();
     }
